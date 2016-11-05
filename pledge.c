@@ -59,7 +59,7 @@ PHP_FUNCTION(pledge) {
     }
 
     if (pledge(promises, NULL) != 0) {
-        switch(errno) {
+        switch (errno) {
             case EINVAL:
                 zend_throw_exception(pledge_exception_ce, "Invalid promise in promises string", 0);
                 RETURN_FALSE;
