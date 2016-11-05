@@ -1,6 +1,6 @@
 # PHP pledge
 
-This is a PHP extension that adds support for OpenBSD's (pledge)[http://man.openbsd.org/OpenBSD-current/man2/pledge.2] system call.
+This is a PHP extension that adds support for OpenBSD's [pledge](http://man.openbsd.org/OpenBSD-current/man2/pledge.2) system call.
 
 ## The theory
 
