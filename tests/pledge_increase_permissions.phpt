@@ -5,9 +5,9 @@ pledge() function - increase permissions with pledge()
 pledge('stdio');
 try {
     pledge('inet stdio');
-} catch (\Exception $e) {
+} catch (\PledgeException $e) {
     var_dump($e->getMessage());
 }
 ?>
 --EXPECTF--
-string(31) "attempt to increase permissions"
+string(31) "Attempt to increase permissions"
