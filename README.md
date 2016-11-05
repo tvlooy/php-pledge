@@ -46,4 +46,5 @@ pledge('inet unix dns stdio');
 ```
 
 You will need to include the ```stdio``` promise every time because PHP will not work well without it. 
+All promises are documented in [the OpenBSD pledge(2) manual page](http://man.openbsd.org/OpenBSD-current/man2/pledge.2)
 
