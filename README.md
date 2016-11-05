@@ -1,10 +1,10 @@
 # PHP pledge
 
-This is a PHP extension that adds support for OpenBSD's [pledge](http://man.openbsd.org/OpenBSD-current/man2/pledge.2) system call.
+This is a PHP extension that adds support for OpenBSD's pledge system call.
 
 ## The theory
 
-The pledge system call, allows a program to restrict the types of operations the program can do after that point. Unlike other similar systems, pledge is specifically designed for programs that need to use a wide variety of operations on initialization, but a fewer number after initialization (when user input will be accepted).
+The [pledge(2) system call](http://man.openbsd.org/OpenBSD-current/man2/pledge.2) allows a program to restrict the types of operations the program can do after that point. Unlike other similar systems, pledge is specifically designed for programs that need to use a wide variety of operations on initialization, but a fewer number after initialization (when user input will be accepted).
 
 The plege system call is supported on OpenBSD >= 5.9
 
@@ -46,5 +46,5 @@ pledge('inet unix dns stdio');
 ```
 
 You will need to include the ```stdio``` promise every time because PHP will not work well without it. 
-All promises are documented in [the OpenBSD pledge(2) manual page](http://man.openbsd.org/OpenBSD-current/man2/pledge.2)
+All promises are documented in [the OpenBSD pledge(2) manual page](http://man.openbsd.org/OpenBSD-current/man2/pledge.2).
 
