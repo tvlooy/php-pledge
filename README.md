@@ -4,7 +4,7 @@ This is a PHP extension that adds support for OpenBSD's [pledge](http://man.open
 
 ## The theory
 
-The pledge(2) system call, allows a program to restrict the types of operations the program can do after that point. Unlike other similar systems, pledge is specifically designed for programs that need to use a wide variety of operations on initialization, but a fewer number after initialization (when user input will be accepted).
+The pledge system call, allows a program to restrict the types of operations the program can do after that point. Unlike other similar systems, pledge is specifically designed for programs that need to use a wide variety of operations on initialization, but a fewer number after initialization (when user input will be accepted).
 
 ## Build
 
