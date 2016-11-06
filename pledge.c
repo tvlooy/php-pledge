@@ -61,13 +61,13 @@ PHP_FUNCTION(pledge) {
     if (pledge(promises, NULL) != 0) {
         switch (errno) {
             case EINVAL:
-                zend_throw_exception(pledge_exception_ce, "Invalid promise in promises string", 0);
+                zend_throw_exception(pledge_exception_ce, "Invalid promise in promises string", errno);
                 RETURN_FALSE;
             case EPERM:
-                zend_throw_exception(pledge_exception_ce, "Attempt to increase permissions", 0);
+                zend_throw_exception(pledge_exception_ce, "Attempt to increase permissions", errno);
                 RETURN_FALSE;
             default:
-                zend_throw_exception(pledge_exception_ce, "Pledge error", 0);
+                zend_throw_exception(pledge_exception_ce, "Pledge error", errno);
                 RETURN_FALSE;
         }
     }
