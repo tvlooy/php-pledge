@@ -16,7 +16,7 @@ cd php-pledge
 phpize
 ./configure
 make
-sudo make install
+doas make install
 ```
 
 Add the following to your configuration to enable the extension:
