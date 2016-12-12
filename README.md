@@ -50,3 +50,25 @@ All promises are documented in [the OpenBSD pledge(2) manual page](http://man.op
 
 If the PHP ```pledge()``` call fails, it will throw a ```\PledgeException```.
 
+## Limitations
+
+If you are running the php interactive shell with ```php -a``` you need these promises:
+
+```
+pledge('rpath wpath cpath tty ioctl stdio');
+```
+
+If you want to pledge Drupal8 or Symfony2 running on FPM, you need at least:
+
+```
+pledge('rpath wpath cpath inet dns flock fattr stdio');
+```
+
+So, preventing filesystem or network access seems impossible.
+
+Just to serve a ```phpinfo()``` or "hello world" from FPM you need:
+
+```
+pledge('rpath flock inet stdio');
+```
+
