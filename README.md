@@ -22,7 +22,7 @@ doas make install
 Add the following to your configuration to enable the extension:
 
 ```
-extension=plegde.so
+extension=pledge.so
 ```
 
 Run the tests with:
