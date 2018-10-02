@@ -27,10 +27,10 @@ missing
 mkinstalldirs
 modules
 run-tests.php
-tests/*/*.diff
-tests/*/*.out
-tests/*/*.php
-tests/*/*.exp
-tests/*/*.log
-tests/*/*.sh
-php-7.0.core
+tests/*.diff
+tests/*.out
+tests/*.php
+tests/*.exp
+tests/*.log
+tests/*.sh
+*.core

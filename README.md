@@ -65,7 +65,34 @@ All promises are documented in [the OpenBSD pledge(2) manual page](http://man.op
 
 If the PHP ```pledge()``` call fails, it will throw a ```\PledgeException```.
 
+To set pledges on an execve child:
+
+```
+pledge(null, 'tty stdio error rpath');
+pcntl_exec('/bin/ls');
+```
+
 ## Unveil usage
+
+```
+# wworks
+print_r(scandir('/var'));
+
+# Limit read only access to /var/spool
+unveil('/var/spool', 'r');
+
+# No longer works
+print_r(scandir('/var'));
+# Works
+print_r(scandir('/var/spool'));
+
+# Disallow more unveils
+unveil();
+
+# No longer works
+unveil('/var', 'r');
+
+```
 
 If the PHP ```unveil()``` call fails, it will throw a ```\UnveilException```.
 

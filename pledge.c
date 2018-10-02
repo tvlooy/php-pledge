@@ -75,8 +75,8 @@ PHP_FUNCTION(pledge) {
 
     ZEND_PARSE_PARAMETERS_START(0, 2)
         Z_PARAM_OPTIONAL
-        Z_PARAM_STRING(promises, promises_len)
-        Z_PARAM_STRING(execpromises, execpromises_len)
+        Z_PARAM_STRING_EX(promises, promises_len, 1, 0)
+        Z_PARAM_STRING_EX(execpromises, execpromises_len, 1, 0)
     ZEND_PARSE_PARAMETERS_END();
 
     if (pledge(promises, execpromises) != 0) {
@@ -105,8 +105,8 @@ PHP_FUNCTION(unveil) {
 
     ZEND_PARSE_PARAMETERS_START(0, 2)
         Z_PARAM_OPTIONAL
-        Z_PARAM_STRING(path, path_len)
-        Z_PARAM_STRING(permissions, permissions_len)
+        Z_PARAM_STRING_EX(path, path_len, 1, 0)
+        Z_PARAM_STRING_EX(permissions, permissions_len, 1, 0)
     ZEND_PARSE_PARAMETERS_END();
 
     if (unveil(path, permissions) != 0) {
