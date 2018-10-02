@@ -1,12 +1,25 @@
 # PHP pledge
 
-This is a PHP extension that adds support for OpenBSD's pledge system call.
+This is a PHP extension that adds support for OpenBSD's pledge and unveil system calls.
+
+## Requirements
+
+This extension was tested with PHP 7.2 and needs at least OpenBSD 6.4.
 
 ## The theory
 
-The [pledge(2) system call](http://man.openbsd.org/OpenBSD-current/man2/pledge.2) allows a program to restrict the types of operations the program can do after that point. Unlike other similar systems, pledge is specifically designed for programs that need to use a wide variety of operations on initialization, but a fewer number after initialization (when user input will be accepted).
+The [pledge(2) system call](http://man.openbsd.org/OpenBSD-current/man2/pledge.2) allows a program to restrict the types
+of operations the program can do after that point. Unlike other similar systems, pledge is specifically designed for
+programs that need to use a wide variety of operations on initialization, but a fewer number after initialization (when
+user input will be accepted).
 
-The plege system call is supported on OpenBSD >= 5.9
+The pledge system call is supported on OpenBSD >= 5.9
+
+The first call to [unveil(2) system call](http://man.openbsd.org/OpenBSD-current/man2/unveil.2) restricts the filesystem
+view. Subsequent calls can open it more. To prevent furter unveiling, call unveil with no parameters or drop the unveil
+pledge if the program is pledged.
+
+The unveil system call is supported on OpenBSD >= 6.4
 
 ## Build
 
@@ -31,7 +44,7 @@ Run the tests with:
 NO_INTERACTION=1 make test
 ```
 
-## Usage
+## Pledge usage
 
 To allow read/write filesystem access, but not network access:
 
@@ -50,7 +63,11 @@ All promises are documented in [the OpenBSD pledge(2) manual page](http://man.op
 
 If the PHP ```pledge()``` call fails, it will throw a ```\PledgeException```.
 
-## Limitations
+## Unveil usage
+
+If the PHP ```unveil()``` call fails, it will throw a ```\UnveilException```.
+
+## Notes
 
 If you are running the php interactive shell with ```php -a``` you need these promises:
 
