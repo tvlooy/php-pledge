@@ -46,6 +46,8 @@ NO_INTERACTION=1 make test
 
 ## Pledge usage
 
+When pleding you program keep an eye on ```/var/log/messages``` to see your violations.
+
 To allow read/write filesystem access, but not network access:
 
 ```
