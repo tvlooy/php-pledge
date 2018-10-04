@@ -10,6 +10,6 @@ try {
     var_dump($e->getCode());
 }
 ?>
---EXPECTF--
+--EXPECT--
 string(31) "Attempt to increase permissions"
 int(1)

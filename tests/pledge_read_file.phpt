@@ -8,7 +8,7 @@ file_get_contents(__FILE__);
 var_dump(pledge('stdio'));
 file_get_contents(__FILE__);
 ?>
---EXPECTF--
+--EXPECT--
 bool(true)
 bool(true)
 Abort trap (core dumped) 

@@ -8,7 +8,7 @@ gethostbyname('openbsd.org');
 var_dump(pledge('stdio'));
 gethostbyname('openbsd.org');
 ?>
---EXPECTF--
+--EXPECT--
 bool(true)
 bool(true)
 Abort trap (core dumped) 

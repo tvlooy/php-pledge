@@ -9,6 +9,6 @@ try {
     var_dump($e->getCode());
 }
 ?>
---EXPECTF--
+--EXPECT--
 string(34) "Invalid promise in promises string"
 int(22)
