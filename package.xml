@@ -21,7 +21,7 @@
  </stability>
  <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
  <notes>
-- add promises support to pledge()
+- add execpromises support to pledge()
 - add unveil()
  </notes>
  <contents>
