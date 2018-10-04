@@ -66,7 +66,7 @@ pledge('stdio inet unix dns');
 
 If the PHP ```pledge()``` call fails, it will throw a ```\PledgeException```.
 
-To set pledges on an execve child:
+To set promises for an execve child:
 
 ```php
 pledge(null, 'stdio rpath tty error');
@@ -129,8 +129,16 @@ Just to serve a ```phpinfo()``` or "hello world" from FPM you need:
 pledge('stdio rpath flock inet');
 ```
 
-You can then further limit filesystem access with unveil(). If you are in web SAPI, again remember that you are not unveiling
-for one request but for all subsequent requests.
+You can then further limit filesystem access with unveil(). If you are in web SAPI, remember that you are not limiting
+filesystem access for one request but for all subsequent requests. Avoid having to add the ```unveil``` promise by checking
+if the process is already running with a restriced view. Eg:
+
+```php
+if (is_file('/etc')) {
+    unveil(__DIR__, 'r');
+}
+pledge('stdio rpath flock inet');
+```
 
 ### Limiting network calls
 
