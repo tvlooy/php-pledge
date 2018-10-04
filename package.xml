@@ -33,6 +33,10 @@
     <file name="pledge_read_file.phpt" role="test" />
     <file name="pledge_unix_socket.phpt" role="test" />
     <file name="pledge_violation.phpt" role="test" />
+    <file name="unveil_current_dir.phpt" role="test" />
+    <file name="unveil_increase_attempt.phpt" role="test" />
+    <file name="unveil_pledge.phpt" role="test" />
+    <file name="unveil_readonly.phpt" role="test" />
    </dir>
    <file name="LICENSE" role="doc" />
    <file name="README.md" role="doc" />
