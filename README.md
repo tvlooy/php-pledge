@@ -129,7 +129,8 @@ Just to serve a ```phpinfo()``` or "hello world" from FPM you need:
 pledge('stdio rpath flock inet');
 ```
 
-You can then further limit filesystem access with unveil().
+You can then further limit filesystem access with unveil(). If you are in web SAPI, again remember that you are not unveiling
+for one request but for all subsequent requests.
 
 ### Limiting network calls
 
