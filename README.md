@@ -23,6 +23,8 @@ The unveil system call is supported on OpenBSD >= 6.4
 
 ## Build
 
+Install a release with PECL (see [security/pledge](https://pecl.php.net/package/pledge)) or build the latest from source:
+
 ```
 git clone https://github.com/tvlooy/php-pledge
 cd php-pledge
