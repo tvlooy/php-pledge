@@ -4,7 +4,7 @@ This is a PHP extension that adds support for OpenBSD's pledge and unveil system
 
 ## Requirements
 
-This extension was tested with PHP 7.2 and needs at least OpenBSD 6.4.
+This extension was tested with PHP 7.0, 7.1, 7.2 and needs at least OpenBSD 6.4.
 
 ## The theory
 
@@ -46,36 +46,37 @@ NO_INTERACTION=1 make test
 
 ## Pledge usage
 
+Note: You will need to include the ```stdio``` promise every time because PHP will not work well without it.
+
+All promises are documented in [the OpenBSD pledge(2) manual page](http://man.openbsd.org/OpenBSD-current/man2/pledge.2).
+
 When pleding you program keep an eye on ```/var/log/messages``` to see your violations.
 
 To allow read/write filesystem access, but not network access:
 
-```
-pledge('rpath wpath cpath stdio');
+```php
+pledge('stdio rpath wpath cpath');
 ```
 
 To allow inet/unix socket access and DNS queries, but not filesystem access:
 
+```php
+pledge('stdio inet unix dns');
 ```
-pledge('inet unix dns stdio');
-```
-
-You will need to include the ```stdio``` promise every time because PHP will not work well without it. 
-All promises are documented in [the OpenBSD pledge(2) manual page](http://man.openbsd.org/OpenBSD-current/man2/pledge.2).
 
 If the PHP ```pledge()``` call fails, it will throw a ```\PledgeException```.
 
 To set pledges on an execve child:
 
-```
-pledge(null, 'tty stdio error rpath');
+```php
+pledge(null, 'stdio rpath tty error');
 pcntl_exec('/bin/ls');
 ```
 
 ## Unveil usage
 
-```
-# wworks
+```php
+# Works
 print_r(scandir('/var'));
 
 # Limit read only access to /var/spool
@@ -96,25 +97,46 @@ unveil('/var', 'r');
 
 If the PHP ```unveil()``` call fails, it will throw a ```\UnveilException```.
 
-## Notes
+## Usage tips
+
+Be carefull what you pledge! If you run PHP with mod_php, you will be pledging and Apache child processes! If you pledge
+php_fpm you will be pledging it for the lifetime of the process, not just the request!
+
+For your web SAPI, make sure you limit the amount of loaded extensions. If you only need ```phar```, ```pcntl```, ...
+in your CLI, then don't load them in your web SAPI.
+
+Unveil can for example be applied to FPM processes in addition to or as an alternative to chroot.
+
+Pledging CLI processes is the most convenient usecase. Examples:
 
 If you are running the php interactive shell with ```php -a``` you need these promises:
 
-```
-pledge('rpath wpath cpath tty ioctl stdio');
+```php
+pledge('stdio rpath wpath cpath tty ioctl');
 ```
 
 If you want to pledge Drupal8 or Symfony2 running on FPM, you need at least:
 
-```
-pledge('rpath wpath cpath inet dns flock fattr stdio');
+```php
+pledge('stdio rpath wpath cpath inet dns flock fattr');
 ```
 
-So, preventing filesystem or network access seems impossible.
+Preventing filesystem or network access with pledge seems impossible.
 
 Just to serve a ```phpinfo()``` or "hello world" from FPM you need:
 
-```
-pledge('rpath flock inet stdio');
+```php
+pledge('stdio rpath flock inet');
 ```
 
+You can then further limit filesystem access with unveil().
+
+### Limiting network calls
+
+There currently is nothing to support "unveiling" of network resources. But this can be achieved with PF. Eg:
+
+```
+block out proto {tcp udp} user your_fpm_user
+pass out proto tcp to $mysql_db port 3306 user your_fpm_user
+pass out proto tcp to $some_rest_api port 443 user your_fpm_user
+```
