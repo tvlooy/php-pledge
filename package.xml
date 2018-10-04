@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>pledge</name>
+ <channel>pecl.php.net</channel>
+ <summary>OpenBSD's pledge / unveil support</summary>
+ <description>This is a PHP extension that adds support for OpenBSD's pledge and unveil system calls.</description>
+ <lead>
+  <name>Tom Van Looy</name>
+  <user>tvlooy</user>
+  <email>tom@ctors.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2016-05-12</date>
+ <version>
+  <release>1.0.0</release>
+  <api>1.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
+ <notes>
+- add pledge()
+ </notes>
+ <contents>
+  <dir name="/">
+   <dir name="tests">
+    <file name="pledge_dns_lookup.phpt" role="test" />
+    <file name="pledge_increase_permissions.phpt" role="test" />
+    <file name="pledge_invalid_promise.phpt" role="test" />
+    <file name="pledge_read_file.phpt" role="test" />
+    <file name="pledge_unix_socket.phpt" role="test" />
+    <file name="pledge_violation.phpt" role="test" />
+   </dir>
+   <file name="LICENSE" role="doc" />
+   <file name="README.md" role="doc" />
+   <file name="config.m4" role="src" />
+   <file name="php_pledge.h" role="src" />
+   <file name="pledge.c" role="src" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>7.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.10</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <providesextension>pledge</providesextension>
+ <extsrcrelease></extsrcrelease>
+</package>
+
