@@ -19,7 +19,7 @@ zend_class_entry *unveil_exception_ce;
 /* provide info for the reflection API */
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_pledge, 0, 0, _IS_BOOL, 0)
     ZEND_ARG_TYPE_INFO(0, promises, IS_STRING, 1)
-    ZEND_ARG_TYPE_INFO(0, promises, IS_STRING, 1)
+    ZEND_ARG_TYPE_INFO(0, execpromises, IS_STRING, 1)
 ZEND_END_ARG_INFO();
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_unveil, 0, 0, _IS_BOOL, 0)
