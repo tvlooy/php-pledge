@@ -16,7 +16,7 @@ user input will be accepted).
 The pledge system call is supported on OpenBSD >= 5.9
 
 The first call to [unveil(2) system call](http://man.openbsd.org/OpenBSD-current/man2/unveil.2) restricts the filesystem
-view. Subsequent calls can open it more. To prevent furter unveiling, call unveil with no parameters or drop the unveil
+view. Subsequent calls can open it more. To prevent further unveiling, call unveil with no parameters or drop the unveil
 pledge if the program is pledged.
 
 The unveil system call is supported on OpenBSD >= 6.4
@@ -101,7 +101,7 @@ If the PHP ```unveil()``` call fails, it will throw a ```\UnveilException```.
 
 ## Usage tips
 
-Be carefull what you pledge! If you run PHP with mod_php, you will be pledging and Apache child processes! If you pledge
+Be careful what you pledge! If you run PHP with mod_php, you will be pledging an Apache child processes! If you pledge
 php_fpm you will be pledging it for the lifetime of the process, not just the request!
 
 For your web SAPI, make sure you limit the amount of loaded extensions. If you only need ```phar```, ```pcntl```, ...
@@ -133,7 +133,7 @@ pledge('stdio rpath flock inet');
 
 You can then further limit filesystem access with unveil(). If you are in web SAPI, remember that you are not limiting
 filesystem access for one request but for all subsequent requests. Avoid having to add the ```unveil``` promise by checking
-if the process is already running with a restriced view. Eg:
+if the process is already running with a restricted view. Eg:
 
 ```php
 if (is_file('/etc')) {
