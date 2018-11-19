@@ -4,7 +4,7 @@ This is a PHP extension that adds support for OpenBSD's pledge and unveil system
 
 ## Requirements
 
-This extension was tested with PHP 7.0, 7.1, 7.2 and needs at least OpenBSD 6.4.
+This extension works with >= 7.2 and needs at least OpenBSD 6.4.
 
 ## The theory
 
