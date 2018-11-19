@@ -136,7 +136,7 @@ filesystem access for one request but for all subsequent requests. Avoid having 
 if the process is already running with a restricted view. Eg:
 
 ```php
-if (is_file('/etc')) {
+if (is_dir('/etc')) {
     unveil(__DIR__, 'r');
 }
 pledge('stdio rpath flock inet');
