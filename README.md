@@ -4,7 +4,29 @@ This is a PHP extension that adds support for OpenBSD's pledge and unveil system
 
 ## Requirements
 
-This extension works with >= 7.2 and needs at least OpenBSD 6.4.
+This extension works with >= 7.2 and needs at least OpenBSD 6.4. Note that with PHP >= 7.4 this extension is useless
+you can use the Foreign Function Interface (FFI) extension that is in core to call libc functions:
+
+```bash
+$ cat test_ffi.php                      
+<?php
+
+$libc = FFI::cdef('
+    int unveil(const char *path, const char *permissions);
+', 'libc.so.92.5');
+
+var_dump(count(scandir('/etc')));
+$libc->unveil(__DIR__, 'r');
+scandir('/etc');
+
+[tvl@obsd64 ~]
+$ php -dextension=ffi test_ffi.php      
+int(77)
+
+Warning: scandir(/etc): failed to open dir: No such file or directory in /home/tvl/test_ffi.php on line 9
+
+Warning: scandir(): (errno 2): No such file or directory in /home/tvl/test_ffi.php on line 9
+```
 
 ## The theory
 
