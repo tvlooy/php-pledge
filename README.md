@@ -4,8 +4,8 @@ This is a PHP extension that adds support for OpenBSD's pledge and unveil system
 
 ## Requirements
 
-This extension works with >= 7.2 and needs at least OpenBSD 6.4. Note that with PHP >= 7.4 this extension is useless
-you can use the Foreign Function Interface (FFI) extension that is in core to call libc functions:
+This extension works with >= 7.2 and needs at least OpenBSD 6.4. Note that with PHP >= 7.4 this extension is useless.
+You can use the Foreign Function Interface (FFI) extension that is in core to call libc functions:
 
 ```bash
 $ cat test_ffi.php                      
