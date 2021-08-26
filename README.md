@@ -2,9 +2,26 @@
 
 This is a PHP extension that adds support for OpenBSD's pledge and unveil system calls.
 
+## OpenBSD Ports
+
+This package is present in OpenBSD ports. To install it, make sure you [have the ports tree](https://www.openbsd.org/faq/ports/ports.html#PortsFetch)
+and install then install the port:
+
+```
+cd /usr/ports/www/pecl-pledge/
+env FLAVOR=php80 make FETCH_PACKAGES= install
+```
+
+Using the extension:
+
+```
+echo 'extension=pledge' > /etc/php-8.0/pledge.ini
+php-8.0 -m | grep pledge
+```
+
 ## Requirements
 
-This extension works with >= 7.2 and needs at least OpenBSD 6.4. Note that with PHP >= 7.4 this extension is useless.
+This extension works with >= 7.2 and needs at least OpenBSD 6.4. Note that with PHP >= 7.4 this extension is more or less useless but still works.
 You can use the Foreign Function Interface (FFI) extension that is in core to call libc functions:
 
 ```bash
