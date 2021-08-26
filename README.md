@@ -36,7 +36,6 @@ var_dump(count(scandir('/etc')));
 $libc->unveil(__DIR__, 'r');
 scandir('/etc');
 
-[tvl@obsd64 ~]
 $ php -dextension=ffi test_ffi.php      
 int(77)
 
@@ -49,7 +48,7 @@ Warning: scandir(): (errno 2): No such file or directory in /home/tvl/test_ffi.p
 
 The [pledge(2) system call](http://man.openbsd.org/OpenBSD-current/man2/pledge.2) allows a program to restrict the types
 of operations the program can do after that point. Unlike other similar systems, pledge is specifically designed for
-programs that need to use a wide variety of operations on initialization, but a fewer number after initialization (when
+programs that need to use a wide variety of operations on initialisation, but a fewer number after initialisation (when
 user input will be accepted).
 
 The pledge system call is supported on OpenBSD >= 5.9
@@ -91,7 +90,7 @@ Note: You will need to include the ```stdio``` promise every time because PHP wi
 
 All promises are documented in [the OpenBSD pledge(2) manual page](http://man.openbsd.org/OpenBSD-current/man2/pledge.2).
 
-When pleding you program keep an eye on ```/var/log/messages``` to see your violations.
+When pledging your program keep an eye on ```/var/log/messages``` to see your violations.
 
 To allow read/write filesystem access, but not network access:
 
