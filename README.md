@@ -5,7 +5,7 @@ This is a PHP extension that adds support for OpenBSD's pledge and unveil system
 ## OpenBSD Ports
 
 This package is present in OpenBSD ports. To install it, make sure you [have the ports tree](https://www.openbsd.org/faq/ports/ports.html#PortsFetch)
-and install then install the port:
+on your machine. Next, install the port:
 
 ```
 cd /usr/ports/www/pecl-pledge/
