@@ -79,21 +79,22 @@ PHP_FUNCTION(pledge) {
         Z_PARAM_STRING_EX(execpromises, execpromises_len, 1, 0)
     ZEND_PARSE_PARAMETERS_END();
 
-    if (pledge(promises, execpromises) != 0) {
-        switch (errno) {
-            case EINVAL:
-                zend_throw_exception(pledge_exception_ce, "Invalid promise in promises string", errno);
-                RETURN_FALSE;
-            case EPERM:
-                zend_throw_exception(pledge_exception_ce, "Attempt to increase permissions", errno);
-                RETURN_FALSE;
-            default:
-                zend_throw_exception(pledge_exception_ce, "Pledge error", errno);
-                RETURN_FALSE;
-        }
+    if (pledge(promises, execpromises) == 0) {
+        RETURN_TRUE;
     }
 
-    RETURN_TRUE;
+    switch (errno) {
+        case EINVAL:
+            zend_throw_exception(pledge_exception_ce, "Invalid promise in promises string", errno);
+            break;
+        case EPERM:
+            zend_throw_exception(pledge_exception_ce, "Attempt to increase permissions", errno);
+            break;
+        default:
+            zend_throw_exception(pledge_exception_ce, "Pledge error", errno);
+    }
+
+    RETURN_FALSE;
 }
 
 /* function unveil(string $path = null, string $permissions = null): bool */
@@ -109,26 +110,27 @@ PHP_FUNCTION(unveil) {
         Z_PARAM_STRING_EX(permissions, permissions_len, 1, 0)
     ZEND_PARSE_PARAMETERS_END();
 
-    if (unveil(path, permissions) != 0) {
-        switch (errno) {
-            case EINVAL:
-                zend_throw_exception(unveil_exception_ce, "Invalid permission value", errno);
-                RETURN_FALSE;
-            case EPERM:
-                zend_throw_exception(unveil_exception_ce, "Attempt to increase permissions", errno);
-                RETURN_FALSE;
-            case E2BIG:
-                zend_throw_exception(unveil_exception_ce, "Too many unveiled paths", errno);
-                RETURN_FALSE;
-            case ENOENT:
-                zend_throw_exception(unveil_exception_ce, "No such directory", errno);
-                RETURN_FALSE;
-            default:
-                zend_throw_exception(unveil_exception_ce, "Unveil error", errno);
-                RETURN_FALSE;
-        }
+    if (unveil(path, permissions) == 0) {
+        RETURN_TRUE;
+    }
+    
+    switch (errno) {
+        case EINVAL:
+            zend_throw_exception(unveil_exception_ce, "Invalid permission value", errno);
+            break;
+        case EPERM:
+            zend_throw_exception(unveil_exception_ce, "Attempt to increase permissions", errno);
+            break;
+        case E2BIG:
+            zend_throw_exception(unveil_exception_ce, "Too many unveiled paths", errno);
+            break;
+        case ENOENT:
+            zend_throw_exception(unveil_exception_ce, "No such directory", errno);
+            break;
+        default:
+            zend_throw_exception(unveil_exception_ce, "Unveil error", errno);
     }
 
-    RETURN_TRUE;
+    RETURN_FALSE;
 }
 
