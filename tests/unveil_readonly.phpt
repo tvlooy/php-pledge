@@ -9,4 +9,4 @@ file_put_contents('test', 'test');
 --EXPECTF--
 bool(true)
 
-Warning: file_put_contents(test): failed to open stream: No such file or directory in %s on line %d
+Warning: file_put_contents(test): Failed to open stream: No such file or directory in %s on line %d

@@ -34,8 +34,8 @@ array(2) {
     string(12) "execpromises"
   }
 }
-string(6) "string"
-string(6) "string"
+string(7) "?string"
+string(7) "?string"
 string(4) "bool"
 array(2) {
   [0]=>
@@ -49,5 +49,5 @@ array(2) {
     string(11) "permissions"
   }
 }
-string(6) "string"
-string(6) "string"
+string(7) "?string"
+string(7) "?string"

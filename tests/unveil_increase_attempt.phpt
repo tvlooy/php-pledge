@@ -7,7 +7,7 @@ unveil();
 unveil('/etc/', 'r');
 ?>
 --EXPECTF--
-Fatal error: Uncaught Exception: Attempt to increase permissions in %s:%d
+Fatal error: Uncaught Exception: An attempt to increase permissions was made, or the path was not accessible, or unveil() was called after locking in %s:%d
 Stack trace:
 #0 %s(%d): unveil('/etc/', 'r')
 #1 {main}

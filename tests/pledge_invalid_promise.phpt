@@ -10,5 +10,5 @@ try {
 }
 ?>
 --EXPECT--
-string(34) "Invalid promise in promises string"
+string(50) "promises is malformed or contains invalid keywords"
 int(22)

@@ -10,10 +10,10 @@
   <email>tom@ctors.net</email>
   <active>yes</active>
  </lead>
- <date>2018-10-13</date>
+ <date>2022-10-07</date>
  <version>
-  <release>2.0.2</release>
-  <api>2.0.2</api>
+  <release>2.0.3</release>
+  <api>2.0.3</api>
  </version>
  <stability>
   <release>stable</release>
@@ -21,7 +21,7 @@
  </stability>
  <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
  <notes>
-- correct reflection information
+- handle EFAULT errors
  </notes>
  <contents>
   <dir name="/">
@@ -58,6 +58,21 @@
  <providesextension>pledge</providesextension>
  <extsrcrelease></extsrcrelease>
  <changelog>
+  <release>
+   <date>2018-10-13</date>
+   <version>
+    <release>2.0.2</release>
+    <api>2.0.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
+   <notes>
+- correct reflection information
+   </notes>
+  </release>
   <release>
    <date>2016-10-12</date>
    <version>

@@ -11,5 +11,5 @@ try {
 }
 ?>
 --EXPECT--
-string(31) "Attempt to increase permissions"
+string(50) "This process is attempting to increase permissions"
 int(1)

@@ -66,7 +66,7 @@ zend_module_entry pledge_module_entry = {
 /* Install module */
 ZEND_GET_MODULE(pledge)
 
-/* function pledge(string $promises = null, string $execpromises = null): bool */
+/* function pledge(?string $promises = null, ?string $execpromises = null): bool */
 PHP_FUNCTION(pledge) {
     char *promises = NULL;
     size_t promises_len = 0;
@@ -84,20 +84,39 @@ PHP_FUNCTION(pledge) {
     }
 
     switch (errno) {
+        case EFAULT:
+            zend_throw_exception(
+                pledge_exception_ce,
+                "promises or execpromises points outside the process's allocated address space",
+                errno
+            );
+            break;
         case EINVAL:
-            zend_throw_exception(pledge_exception_ce, "Invalid promise in promises string", errno);
+            zend_throw_exception(
+                pledge_exception_ce,
+                "promises is malformed or contains invalid keywords",
+                errno
+            );
             break;
         case EPERM:
-            zend_throw_exception(pledge_exception_ce, "Attempt to increase permissions", errno);
+            zend_throw_exception(
+                pledge_exception_ce,
+                "This process is attempting to increase permissions",
+                errno
+            );
             break;
         default:
-            zend_throw_exception(pledge_exception_ce, "Pledge error", errno);
+            zend_throw_exception(
+                pledge_exception_ce,
+                "Pledge error",
+                errno
+            );
     }
 
     RETURN_FALSE;
 }
 
-/* function unveil(string $path = null, string $permissions = null): bool */
+/* function unveil(?string $path = null, ?string $permissions = null): bool */
 PHP_FUNCTION(unveil) {
     char *path = NULL;
     size_t path_len = 0;
@@ -115,20 +134,47 @@ PHP_FUNCTION(unveil) {
     }
     
     switch (errno) {
-        case EINVAL:
-            zend_throw_exception(unveil_exception_ce, "Invalid permission value", errno);
-            break;
-        case EPERM:
-            zend_throw_exception(unveil_exception_ce, "Attempt to increase permissions", errno);
-            break;
         case E2BIG:
-            zend_throw_exception(unveil_exception_ce, "Too many unveiled paths", errno);
+            zend_throw_exception(
+                unveil_exception_ce,
+                "The addition of path would exceed the per-process limit for unveiled paths",
+                errno
+            );
+            break;
+        case EFAULT:
+            zend_throw_exception(
+                unveil_exception_ce,
+                "path or permissions points outside the process's allocated address space",
+                errno
+            );
             break;
         case ENOENT:
-            zend_throw_exception(unveil_exception_ce, "No such directory", errno);
+            zend_throw_exception(
+                unveil_exception_ce,
+                "A directory in path did not exist",
+                errno
+            );
+            break;
+        case EINVAL:
+            zend_throw_exception(
+                unveil_exception_ce,
+                "An invalid value of permissions was used",
+                errno
+            );
+            break;
+        case EPERM:
+            zend_throw_exception(
+                unveil_exception_ce,
+                "An attempt to increase permissions was made, or the path was not accessible, or unveil() was called after locking",
+                errno
+            );
             break;
         default:
-            zend_throw_exception(unveil_exception_ce, "Unveil error", errno);
+            zend_throw_exception(
+                unveil_exception_ce,
+                "Unveil error",
+                errno
+            );
     }
 
     RETURN_FALSE;
