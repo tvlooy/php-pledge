@@ -10,10 +10,10 @@
   <email>tom@ctors.net</email>
   <active>yes</active>
  </lead>
- <date>2022-10-07</date>
+ <date>2023-11-22</date>
  <version>
-  <release>2.0.3</release>
-  <api>2.0.3</api>
+  <release>2.1.2</release>
+  <api>2.1.2</api>
  </version>
  <stability>
   <release>stable</release>
@@ -21,7 +21,7 @@
  </stability>
  <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
  <notes>
-- handle EFAULT errors
+   - rename ini settings
  </notes>
  <contents>
   <dir name="/">
@@ -59,6 +59,51 @@
  <extsrcrelease></extsrcrelease>
  <changelog>
   <release>
+   <date>2023-11-21</date>
+   <version>
+    <release>2.1.1</release>
+    <api>2.1.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
+   <notes>
+     - set the ini values on runtime init, so we use set them with php_admin_value in fpm config
+   </notes>
+  </release>
+  <release>
+   <date>2023-11-20</date>
+   <version>
+    <release>2.1.0</release>
+    <api>2.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
+   <notes>
+     - add support for openbsd.promises, openbsd.execpromises and openbsd.unveil ini directives
+   </notes>
+  </release>
+  <release>
+   <date>2022-10-07</date>
+   <version>
+    <release>2.0.3</release>
+    <api>2.0.3</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
+   <notes>
+     - handle EFAULT errors
+   </notes>
+  </release>
+  <release>
    <date>2018-10-13</date>
    <version>
     <release>2.0.2</release>
@@ -70,7 +115,7 @@
    </stability>
    <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
    <notes>
-- correct reflection information
+     - correct reflection information
    </notes>
   </release>
   <release>
@@ -85,7 +130,7 @@
    </stability>
    <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
    <notes>
-- add unveil test
+     - add unveil test
    </notes>
   </release>
   <release>
@@ -100,8 +145,8 @@
    </stability>
    <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
    <notes>
-- add execpromises support to pledge()
-- add unveil()
+     - add execpromises support to pledge()
+     - add unveil()
    </notes>
   </release>
   <release>
@@ -116,7 +161,7 @@
    </stability>
    <license uri="https://github.com/tvlooy/php-pledge/blob/master/LICENSE">ISC License</license>
    <notes>
-- add pledge()
+     - add pledge()
    </notes>
   </release>
  </changelog>
