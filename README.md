@@ -26,7 +26,7 @@ The unveil system call is supported on OpenBSD >= 6.4
 This package is present in OpenBSD packages. To install it, run:
 
 ```sh
-pkg_add pecl82-pledge-2.1.2
+pkg_add pecl83-pledge
 ```
 
 This package can also be installed from ports. To install it, make sure you
