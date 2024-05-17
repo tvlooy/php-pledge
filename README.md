@@ -34,14 +34,14 @@ This package can also be installed from ports. To install it, make sure you
 
 ```sh
 cd /usr/ports/www/pecl-pledge/
-env FLAVOR=php82 make FETCH_PACKAGES= install
+env FLAVOR=php83 make FETCH_PACKAGES= install
 ```
 
 Using the extension:
 
 ```sh
-echo 'extension=pledge' > /etc/php-8.2/pledge.ini
-php-8.2 -m | grep pledge
+echo 'extension=pledge' > /etc/php-8.3/pledge.ini
+php-8.3 -m | grep pledge
 ```
 
 You can then use the `pledge()` and `unveil()` functions, or set a pledge and unveil default with ini values:
